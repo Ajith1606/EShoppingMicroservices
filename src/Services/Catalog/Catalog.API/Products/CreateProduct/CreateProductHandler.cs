@@ -17,6 +17,7 @@ namespace Catalog.API.Products.CreateProduct
     {
         public Task<CreateProductResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
         {
+            //Bussiness Logic to create a product
             throw new NotImplementedException();
         }
     }
