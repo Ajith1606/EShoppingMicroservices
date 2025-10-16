@@ -7,8 +7,7 @@ namespace Catalog.API.Products.CreateProduct
      List<string> Categories,
      string Description,
      string ImageFile,
-     decimal Price,
-     int Stock
+     decimal Price
      );
     public record CreateProductResponse(Guid Id);
     public class CreateProductEndpoint : ICarterModule
@@ -19,7 +18,7 @@ namespace Catalog.API.Products.CreateProduct
             {
                 var command = request.Adapt<CreateProductCommand>();
                 var result = await sender.Send(command);
-                var response = request.Adapt<CreateProductResponse>();
+                var response = result.Adapt<CreateProductResponse>();
                 return Results.Created($"/products/{response.Id}", response);
             })
             .WithName("CreateProduct")

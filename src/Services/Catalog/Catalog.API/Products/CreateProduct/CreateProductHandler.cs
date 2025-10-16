@@ -9,8 +9,7 @@ namespace Catalog.API.Products.CreateProduct
         List<string> Categories,
         string Description,
         string ImageFile,
-        decimal Price,
-        int Stock
+        decimal Price
         ) : ICommand<CreateProductResult>;
     public record CreateProductResult(Guid Id);
 
