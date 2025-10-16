@@ -1,6 +1,23 @@
-﻿namespace Catalog.API.Products.CreateProduct
+﻿using MediatR;
+
+namespace Catalog.API.Products.CreateProduct
 {
-    public class CreateProductHandler
+    public record  CreateProductCommand
+        (
+        string Name,
+        List<string> Categories,
+        string Description,
+        string ImageFile,
+        decimal Price,
+        int Stock
+        ) : IRequest<CreateProductResult>;
+    public record CreateProductResult(Guid Id);
+
+    internal class CreateProductCommandHandler : IRequestHandler<CreateProductCommand, CreateProductResult>
     {
+        public Task<CreateProductResult> Handle(CreateProductCommand request, CancellationToken cancellationToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
