@@ -10,7 +10,7 @@ namespace Catalog.API.Products.CreateProduct
      string ImageFile,
      decimal Price,
      int Stock
-     ) : ICommand<CreateProductResult>;
+     );
     public record CreateProductResponse(Guid Id);
     public class CreateProductEndpoint
     {
