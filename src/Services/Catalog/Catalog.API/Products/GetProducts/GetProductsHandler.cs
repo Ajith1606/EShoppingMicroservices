@@ -15,6 +15,6 @@
             //Return GetProductsResult result
             return new GetProductsResult(products);
         }
-    {
+   
     }
 }
