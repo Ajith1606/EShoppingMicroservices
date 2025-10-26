@@ -3,9 +3,9 @@ using Microsoft.Extensions.Logging;
 
 namespace Catalog.API.Products.UpdateProduct
 {
-    public record UpdateProductCommand(Guid Id, string Name, List<string> Category, string Description, string ImageFile, decimal Price) 
+    public record UpdateProductCommand(Guid Id, string Name, List<string> Categories, string Description, string ImageFile, decimal Price) 
             : ICommand<UpdateProductResult>;
-    public record UpdateProductResult(bool Success);
+    public record UpdateProductResult(bool IsSuccess);
 
     public class UpdateProductCommandHandler
         (IDocumentSession session, ILogger<UpdateProductCommandHandler> logger)
@@ -22,7 +22,7 @@ namespace Catalog.API.Products.UpdateProduct
                throw new ProductNotFoundException();
             }
             product.Name = command.Name;
-            product.Categories = command.Category;
+            product.Categories = command.Categories;
             product.Description = command.Description;
             product.ImageFile = command.ImageFile;
             product.Price = command.Price;
