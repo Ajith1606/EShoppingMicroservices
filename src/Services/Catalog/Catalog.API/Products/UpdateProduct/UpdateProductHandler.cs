@@ -33,7 +33,7 @@ namespace Catalog.API.Products.UpdateProduct
             if (product == null)
             {
                 logger.LogWarning("Product with Id {ProductId} not found", command.Id);
-               throw new ProductNotFoundException();
+               throw new ProductNotFoundException(command.Id);
             }
             product.Name = command.Name;
             product.Categories = command.Categories;
