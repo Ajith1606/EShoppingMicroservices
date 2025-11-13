@@ -15,7 +15,9 @@
     {
         public async Task<StoreBasketResult> Handle(StoreBasketCommand command, CancellationToken cancellationToken)
         {
-           ShoppingCart cart = command.Cart;
+            //TODO : communicate with Discount gRPC and calculate latest price of products into shopping cart
+
+            ShoppingCart cart = command.Cart;
             //TODO: store basket in database (use Marten upsert - if exist = update, if not exist = insert)
             //TODO: update cache
             await repository.StoreBasket(command.Cart, cancellationToken);
