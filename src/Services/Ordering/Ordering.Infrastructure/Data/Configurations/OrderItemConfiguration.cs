@@ -1,11 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Ordering.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Ordering.Domain.ValueObjects;
 
 namespace Ordering.Infrastructure.Data.Configurations
 {
@@ -13,7 +9,19 @@ namespace Ordering.Infrastructure.Data.Configurations
     {
         public void Configure(EntityTypeBuilder<OrderItem> builder)
         {
-            throw new NotImplementedException();
+            builder.HasKey(oi => oi.Id);
+
+            builder.Property(oi => oi.Id).HasConversion(
+                                       orderItemId => orderItemId.Value,
+                                       dbId => OrderItemId.Of(dbId));
+
+            builder.HasOne<Product>()
+                .WithMany()
+                .HasForeignKey(oi => oi.ProductId);
+
+            builder.Property(oi => oi.Quantity).IsRequired();
+
+            builder.Property(oi => oi.Price).IsRequired();
         }
     }
 }
