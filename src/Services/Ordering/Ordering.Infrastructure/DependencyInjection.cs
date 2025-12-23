@@ -9,8 +9,10 @@
 
             //// Add services to the container.
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
-
+            {
+                options.AddInterceptors(new AuditableEntityInterceptor);
+                options.UseSqlServer(connectionString);
+            });
             //services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
             return services;
